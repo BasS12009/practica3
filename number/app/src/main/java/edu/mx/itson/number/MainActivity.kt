@@ -24,6 +24,21 @@ class MainActivity : AppCompatActivity() {
         val generate: Button = findViewById(R.id.generate)
         val guessed: Button = findViewById(R.id.guessed)
 
+        generate.setOnClickListener{
+            
+        num= Random. nextInt(minValue, maxValue) 
+        guessings.setText(num.tostring())
+        generate.visibility= View.INVISIBLE
+        guessed.visibility=View.VISIBLE
+        }
+         up.setOnClickListener { it: View!
+        minValue=num
+        if(checkingLimits)){
+        num=Random. nextInt(minValue, maxValue)
+         guessings.setText(num.toStringO)
+        }else{
+guessings.setText("No puede ser;(me ganaste)")
+｝
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
