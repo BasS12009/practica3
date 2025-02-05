@@ -31,14 +31,47 @@ class MainActivity : AppCompatActivity() {
         generate.visibility= View.INVISIBLE
         guessed.visibility=View.VISIBLE
         }
-         up.setOnClickListener { it: View!
+         up.setOnClickListener{
         minValue=num
-        if(checkingLimits)){
-        num=Random. nextInt(minValue, maxValue)
-         guessings.setText(num.toStringO)
+        if(checkingLimits()){
+        num=Random.nextInt(minValue, maxValue)
+         guessings.setText(num.toString)
         }else{
 guessings.setText("No puede ser;(me ganaste)")
 ｝
+        }
+        down.setOnClickListener { 
+        maxValue=num
+        if(checkingLimits()){
+        num=Random.nextInt(minValue, maxValue)
+         guessings.setText(num.toString)
+        }else{
+            guessing.setText(num.toString())
+        } 
+        guessed.setOnClickListener{
+            if(!won){
+                guessings.setText("Adivine, tu numero es el" +num)
+               guessed.setText("Volver a")
+               won=true
+                
+            }
+            else{
+                generate.visibility=View.VISIBLE
+                generate.setText("Tap on generate to start")
+                guessed.visibility= View.GONE
+                reseertValues()
+            }
+        }
+        fun resertValues(){
+            minValue=0
+            maxValue=100
+            num=0
+            won=false
+        }
+        fun checkingLimits():Boolean{
+            return minValue!=maxValue
+        }
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
